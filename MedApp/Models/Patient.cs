@@ -21,7 +21,9 @@ namespace MedApp.Models
         [Phone]
         public string PhoneNo { get; set; }
         [Required]
-        public string MedicalAid { get; set; }
+        public bool MedicalAid { get; set; }
+        [Display(Name = "MedicalAid Company")]
+        public string MedicalAidComp {  get; set; }
 
     }
 }

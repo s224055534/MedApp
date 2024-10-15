@@ -12,9 +12,9 @@ namespace MedApp.Data
             
         }
   
-        public DbSet<Doctor> Doctor { get; set; }
-        public DbSet<User> User { get; set; }
-        public DbSet<Assistant> Assistant { get; set; }
+        public DbSet<Employee> Employee { get; set; }
         public DbSet<Patient> Patient { get; set; }
+        public DbSet<Visit> Visit { get; set; }
+        public DbSet<Notes> Notes { get; set; }
     }
 }

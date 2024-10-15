@@ -12,7 +12,7 @@ var connectionString = builder.Configuration.GetConnectionString("DbConn");
 builder.Services.AddDbContext<ManagementContext>(
     options => options.UseSqlServer(connectionString));
 
-builder.Services.AddIdentity<User, IdentityRole>(c => c.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<ManagementContext>().AddDefaultTokenProviders();
+//builder.Services.AddIdentity<Employee, IdentityRole>(c => c.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<ManagementContext>().AddDefaultTokenProviders();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -33,36 +33,36 @@ if (app.Environment.IsDevelopment())
 
 app.UseAuthorization();
 
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    try
-    {
-        // Call the method to create roles
-        await CreateRolesAsync(services);
-    }
-    catch (Exception ex)
-    {
-        // Handle exceptions or log them
-        Console.WriteLine($"An error occurred during role creation: {ex.Message}");
-    }
-}
+//using (var scope = app.Services.CreateScope())
+//{
+//    var services = scope.ServiceProvider;
+//    try
+//    {
+//        // Call the method to create roles
+//        await CreateRolesAsync(services);
+//    }
+//    catch (Exception ex)
+//    {
+//        // Handle exceptions or log them
+//        Console.WriteLine($"An error occurred during role creation: {ex.Message}");
+//    }
+//}
 
 app.MapControllers();
 
 app.Run();
 
-async Task CreateRolesAsync(IServiceProvider serviceProvider)
-{
-    var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-    string[] roleNames = { "Admin", "Doctor", "Assistant", "Patient" };
+//async Task CreateRolesAsync(IServiceProvider serviceProvider)
+//{
+//    var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+//    string[] roleNames = { "Admin", "Doctor", "Assistant" };
 
-    foreach (var roleName in roleNames)
-    {
-        var roleExists = await roleManager.RoleExistsAsync(roleName);
-        if (!roleExists)
-        {
-            await roleManager.CreateAsync(new IdentityRole(roleName));
-        }
-    }
-}
+//    foreach (var roleName in roleNames)
+//    {
+//        var roleExists = await roleManager.RoleExistsAsync(roleName);
+//        if (!roleExists)
+//        {
+//            await roleManager.CreateAsync(new IdentityRole(roleName));
+//        }
+//    }
+//}
